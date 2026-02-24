@@ -98,7 +98,13 @@ export function ProductCreateForm() {
   }
 
   async function onSubmit(values: ProductFormValues) {
-    const payload = mapFormToApiPayload(values);
+    const parsed = productFormSchema.safeParse(values);
+    if (!parsed.success) {
+      toast.error("Проверьте поля формы");
+      return;
+    }
+
+    const payload = mapFormToApiPayload(parsed.data);
 
     await toast.promise(
       (async () => {
@@ -123,13 +129,12 @@ export function ProductCreateForm() {
       {
         loading: "Создаю карточку…",
         success: () => {
-          // reset to defaults after success (можешь поменять поведение)
           form.reset();
           return "Карточка создана и отправлена в TableCRM";
         },
         error: (e) =>
           e instanceof Error ? e.message : "Не удалось создать карточку",
-      }
+      },
     );
   }
 
@@ -380,11 +385,7 @@ export function ProductCreateForm() {
                           <FormItem>
                             <FormLabel>Широта</FormLabel>
                             <FormControl>
-                              <Input
-                                type="number"
-                                step="0.000001"
-                                {...field}
-                              />
+                              <Input type="number" step="0.000001" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -397,11 +398,7 @@ export function ProductCreateForm() {
                           <FormItem>
                             <FormLabel>Долгота</FormLabel>
                             <FormControl>
-                              <Input
-                                type="number"
-                                step="0.000001"
-                                {...field}
-                              />
+                              <Input type="number" step="0.000001" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -425,7 +422,7 @@ export function ProductCreateForm() {
                             checked={field.value === "lcard_cashback"}
                             onCheckedChange={(checked) =>
                               field.onChange(
-                                checked ? "lcard_cashback" : "none"
+                                checked ? "lcard_cashback" : "none",
                               )
                             }
                           />
@@ -439,7 +436,9 @@ export function ProductCreateForm() {
                     name="chatting_percent"
                     render={({ field }) => (
                       <FormItem className="min-w-[180px]">
-                        <FormLabel>Процент комиссии за сделку через чат % *</FormLabel>
+                        <FormLabel>
+                          Процент комиссии за сделку через чат % *
+                        </FormLabel>
                         <FormControl>
                           <Input
                             type="number"
@@ -456,10 +455,7 @@ export function ProductCreateForm() {
                 </div>
 
                 <div className="flex justify-end">
-                  <Button
-                    type="submit"
-                    disabled={form.formState.isSubmitting}
-                  >
+                  <Button type="submit" disabled={form.formState.isSubmitting}>
                     {form.formState.isSubmitting
                       ? "Создаю..."
                       : "Создать карточку"}

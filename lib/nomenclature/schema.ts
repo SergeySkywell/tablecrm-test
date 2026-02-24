@@ -33,4 +33,5 @@ export const productFormSchema = z.object({
   longitude: z.coerce.number().optional(),
 });
 
-export type ProductFormValues = z.infer<typeof productFormSchema>;
+export type ProductFormValues = z.input<typeof productFormSchema>;
+export type ProductParsedValues = z.output<typeof productFormSchema>;
