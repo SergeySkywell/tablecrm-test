@@ -163,8 +163,26 @@ export function ProductCreateForm() {
                         <FormLabel>Название *</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder='Например: "Куртка зимняя мужская"'
-                            {...field}
+                            type="number"
+                            min={0}
+                            step={1}
+                            value={
+                              typeof field.value === "number"
+                                ? field.value
+                                : field.value
+                                  ? Number(field.value)
+                                  : ""
+                            }
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value === ""
+                                  ? ""
+                                  : Number(e.target.value),
+                              )
+                            }
+                            onBlur={field.onBlur}
+                            name={field.name}
+                            ref={field.ref}
                           />
                         </FormControl>
                         <FormMessage />
