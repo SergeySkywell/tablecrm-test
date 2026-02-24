@@ -218,7 +218,28 @@ export function ProductCreateForm() {
                       <FormItem>
                         <FormLabel>Цена *</FormLabel>
                         <FormControl>
-                          <Input type="number" min={0} step="1" {...field} />
+                          <Input
+                            type="number"
+                            min={0}
+                            step={1}
+                            value={
+                              typeof field.value === "number"
+                                ? field.value
+                                : field.value
+                                  ? Number(field.value)
+                                  : ""
+                            }
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value === ""
+                                  ? ""
+                                  : Number(e.target.value),
+                              )
+                            }
+                            onBlur={field.onBlur}
+                            name={field.name}
+                            ref={field.ref}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -272,7 +293,27 @@ export function ProductCreateForm() {
                       <FormItem>
                         <FormLabel>Единица измерения (ID) *</FormLabel>
                         <FormControl>
-                          <Input type="number" {...field} />
+                          <Input
+                            type="number"
+                            step={1}
+                            value={
+                              typeof field.value === "number"
+                                ? field.value
+                                : field.value
+                                  ? Number(field.value)
+                                  : ""
+                            }
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value === ""
+                                  ? ""
+                                  : Number(e.target.value),
+                              )
+                            }
+                            onBlur={field.onBlur}
+                            name={field.name}
+                            ref={field.ref}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -286,7 +327,27 @@ export function ProductCreateForm() {
                       <FormItem>
                         <FormLabel>Категория (ID) *</FormLabel>
                         <FormControl>
-                          <Input type="number" {...field} />
+                          <Input
+                            type="number"
+                            step={1}
+                            value={
+                              typeof field.value === "number"
+                                ? field.value
+                                : field.value
+                                  ? Number(field.value)
+                                  : ""
+                            }
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value === ""
+                                  ? ""
+                                  : Number(e.target.value),
+                              )
+                            }
+                            onBlur={field.onBlur}
+                            name={field.name}
+                            ref={field.ref}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -300,7 +361,27 @@ export function ProductCreateForm() {
                       <FormItem>
                         <FormLabel>Глобальная категория (ID)</FormLabel>
                         <FormControl>
-                          <Input type="number" {...field} />
+                          <Input
+                            type="number"
+                            step={1}
+                            value={
+                              typeof field.value === "number"
+                                ? field.value
+                                : field.value
+                                  ? Number(field.value)
+                                  : ""
+                            }
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value === ""
+                                  ? ""
+                                  : Number(e.target.value),
+                              )
+                            }
+                            onBlur={field.onBlur}
+                            name={field.name}
+                            ref={field.ref}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -385,7 +466,27 @@ export function ProductCreateForm() {
                           <FormItem>
                             <FormLabel>Широта</FormLabel>
                             <FormControl>
-                              <Input type="number" step="0.000001" {...field} />
+                              <Input
+                                type="number"
+                                step="0.000001"
+                                value={
+                                  typeof field.value === "number"
+                                    ? field.value
+                                    : field.value
+                                      ? Number(field.value)
+                                      : ""
+                                }
+                                onChange={(e) =>
+                                  field.onChange(
+                                    e.target.value === ""
+                                      ? ""
+                                      : Number(e.target.value),
+                                  )
+                                }
+                                onBlur={field.onBlur}
+                                name={field.name}
+                                ref={field.ref}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -398,7 +499,27 @@ export function ProductCreateForm() {
                           <FormItem>
                             <FormLabel>Долгота</FormLabel>
                             <FormControl>
-                              <Input type="number" step="0.000001" {...field} />
+                              <Input
+                                type="number"
+                                step="0.000001"
+                                value={
+                                  typeof field.value === "number"
+                                    ? field.value
+                                    : field.value
+                                      ? Number(field.value)
+                                      : ""
+                                }
+                                onChange={(e) =>
+                                  field.onChange(
+                                    e.target.value === ""
+                                      ? ""
+                                      : Number(e.target.value),
+                                  )
+                                }
+                                onBlur={field.onBlur}
+                                name={field.name}
+                                ref={field.ref}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -444,8 +565,24 @@ export function ProductCreateForm() {
                             type="number"
                             min={0}
                             max={100}
-                            step="1"
-                            {...field}
+                            step={1}
+                            value={
+                              typeof field.value === "number"
+                                ? field.value
+                                : field.value
+                                  ? Number(field.value)
+                                  : ""
+                            }
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value === ""
+                                  ? ""
+                                  : Number(e.target.value),
+                              )
+                            }
+                            onBlur={field.onBlur}
+                            name={field.name}
+                            ref={field.ref}
                           />
                         </FormControl>
                         <FormMessage />
