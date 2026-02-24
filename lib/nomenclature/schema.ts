@@ -2,7 +2,8 @@ import { z } from "zod";
 
 export const productFormSchema = z.object({
   name: z.string().trim().min(1, "Введите название"),
-  type: z.enum(["product", "service"], { required_error: "Выберите тип" }),
+
+  type: z.union([z.literal("product"), z.literal("service")]),
 
   description_short: z.string().trim().optional().default(""),
   description_long: z.string().trim().optional().default(""),
@@ -15,7 +16,9 @@ export const productFormSchema = z.object({
     .int()
     .positive("category должен быть числом (ID)"),
 
-  cashback_type: z.enum(["lcard_cashback", "none"]).default("lcard_cashback"),
+  cashback_type: z
+    .union([z.literal("lcard_cashback"), z.literal("none")])
+    .default("lcard_cashback"),
 
   seo_title: z.string().trim().optional().default(""),
   seo_description: z.string().trim().optional().default(""),
